@@ -1,6 +1,6 @@
 const express = require("express");
 const { S3Client, ListObjectsV2Command } = require("@aws-sdk/client-s3");
-const BUCKET_NAME = "test-boxx-test";
+const BUCKET_NAME = process.env.BUCKET_NAME || "test-boxx-dev";
 const REGION = "ap-south-1";
 
 const s3Client = new S3Client({ region: REGION });
