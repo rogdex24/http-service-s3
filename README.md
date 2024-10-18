@@ -17,8 +17,7 @@ This project sets up an HTTP service that interacts with AWS S3. The infrastruct
 1. **Infrastructure as Code (IaC)**: Terraform is used to manage the AWS infrastructure.
 2. **Node.js for HTTP Service**: Node.js is chosen for ease of integration with AWS SDKs.
 3. **PM2 for Process Management**: PM2 is used to manage the Node.js process, ensuring that the service is always running and can recover from crashes.
-4. **S3 Access**: S3 Access is given through  IAM Instance Profile (IAM Role) for the instance which has the ListObject Permissions, which is secure and easily manageable rather than using Access Keys
-
+4. **S3 Access**: S3 Access is given through IAM Instance Profile (IAM Role) for the instance which has the ListObject Permissions, which is secure and easily manageable rather than using Access Keys
 
 ## Assumptions
 
@@ -28,6 +27,7 @@ This project sets up an HTTP service that interacts with AWS S3. The infrastruct
 4. **Internet Access**: The EC2 instance requires internet access to clone the GitHub repository and install dependencies.
 
 ## Setup Instructions
+
 The Terraform script has userdata / installation script which would install and run the API Endpoint
 
 1. **Clone the Repository**:
@@ -44,3 +44,21 @@ The Terraform script has userdata / installation script which would install and 
    terraform init
    terraform apply
    ```
+
+### Video Demo
+
+[![Watch the video](https://img.youtube.com/vi/JJxZghtZ1r8/0.jpg)](https://www.youtube.com/watch?v=JJxZghtZ1r8)
+
+### Screenshots
+
+- S3 Bucket
+  ![alt text](/images/image.png)
+
+- API Response
+  ![alt text](images/image-2.png)
+
+- S3 Bucket
+  ![alt text](images/image-1.png)
+
+- API Resposne
+  ![alt text](images/image-3.png)
