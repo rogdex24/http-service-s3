@@ -1,17 +1,24 @@
 const express = require("express");
 const { S3Client, ListObjectsV2Command } = require("@aws-sdk/client-s3");
 const BUCKET_NAME = process.env.BUCKET_NAME || "test-boxx-dev";
-const REGION = "ap-south-1";
+const REGION = process.env.REGION || "ap-south-2";
 
 const s3Client = new S3Client({ region: REGION });
 const app = express();
+
+app.use((req, res, next) => {
+  if (req.path === "/") {
+    return res.redirect("/list-bucket-content");
+  }
+  next();
+});
 
 app.get("/list-bucket-content", async (req, res) => {
   try {
     const contentList = await listS3Objects();
     res.send({ content: contentList });
   } catch (error) {
-    console.error("root level path api error", error);
+    console.error("root level path api error");
     res.status(500).send({ error: "Error fetching S3 objects" });
   }
 });
@@ -27,7 +34,7 @@ app.get("/list-bucket-content/*", async (req, res) => {
     const contentList = await listS3Objects(s3Prefix);
     res.send({ content: contentList });
   } catch (error) {
-    console.error("sub level path api error", error);
+    console.error("sub level path api error");
     res.status(500).send({ error: "Error fetching S3 objects" });
   }
 });

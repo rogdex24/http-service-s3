@@ -5,6 +5,10 @@ if [ -z "$1" ]; then
   echo "Usage: $0 <bucket-name>"
   exit 1
 fi
+
+BUCKET_NAME=$1
+REGION=ap-south-2
+
 # install node
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 source ~/.bashrc
@@ -20,4 +24,4 @@ cd ./http_service
 npm install
 
 # start the service
-pm2 start index.js --name http_s3_service -- BUCKET_NAME=$BUCKET_NAME
+PORT=1444 pm2 start index.js --name http_s3_service -- BUCKET_NAME=$BUCKET_NAME
